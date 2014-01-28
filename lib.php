@@ -256,15 +256,17 @@ class repository_semantic_lo_upload extends repository {
             $stored_file = $fs->create_file_from_pathname($record, $_FILES[$elname]['tmp_name']);
         }
 
+        $url = moodle_url::make_draftfile_url($record->itemid, $record->filepath, $record->filename)->out(false);
+        
         // Funcao para Adicionar ao Repositorio Semantico
        
-        $data = array('title'=>$record->filename);         
+        $data = array('title'=>$record->filename, 'identifier'=>$url);         
         $this->_add_lo_repository($data);
-       
+        
         //
 
         return array(
-            'url'=>moodle_url::make_draftfile_url($record->itemid, $record->filepath, $record->filename)->out(false),
+            'url'=>$url,
             'id'=>$record->itemid,
             'file'=>$record->filename);
     }

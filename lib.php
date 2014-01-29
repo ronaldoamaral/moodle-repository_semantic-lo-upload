@@ -371,7 +371,7 @@ class repository_semantic_lo_upload extends repository {
      * @return int
      */
     public function supported_returntypes() {
-        return (FILE_INTERNAL | FILE_EXTERNAL);
+        return FILE_INTERNAL;
     }
 
     /**

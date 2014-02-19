@@ -290,10 +290,14 @@ class repository_semantic_lo_upload extends repository {
         }
          */
         
-        $postdata = format_postdata_for_curlcall($data);
+        /* $postdata = format_postdata_for_curlcall($data);*/
+        $postdata = json_encode($data);
         
-        $resp = $c->post($this->add_url, $postdata);
+        $param = array('HEADER'=>"Content-Type: application/json");
+
+        $c->setHeader($param);
         
+        $resp = $c->post($this->add_url, $postdata);        
         
         $results = json_decode($resp, true);
         
